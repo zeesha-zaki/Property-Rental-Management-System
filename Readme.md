@@ -1,12 +1,12 @@
-# Property Rental Management System (CS-115 Term Project)
+# Property Rental Management System (CS-115 Semester Project)
 
 A modular multi-file application developed in C for the **CS-115 Computer Programming (Fall Semester 2026)** course[cite: 1, 2].
 
 ## File Map & Assignments
-- `rental_system.h` & `auth.c` & `property_admin.c`: Student 1
-- `tenant_mgmt.c`: Student 2
-- `payment_mgmt.c`: Student 3
-- `reports.c` & `main.c` & `Makefile`: Student 4
+- `rental_system.h` & `auth.c` & `property_admin.c`: Saad Tariq
+- `tenant_mgmt.c`: Zeesha Zaki
+- `payment_mgmt.c`: Ahsan Jawed
+- `reports.c` & `main.c` & `Makefile`: Abiha Laeeq
 
 ## Compilation and Running
 
