@@ -1,0 +1,4 @@
+PaymentID,TenantID,AmountPaid,Date,Status
+901,501,500,15/11/2026,Paid
+902,501,300,14/2/2026,Paid
+903,501,500,12/10/2026,Paid

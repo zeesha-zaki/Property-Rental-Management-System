@@ -1,0 +1,11 @@
+===================================================
+     PROPERTY MANAGEMENT SYSTEM SUMMARY REPORT    
+===================================================
+ Total Properties Registered : 3
+ Occupied / Rented Units     : 1
+ Vacant Units                : 2
+ Occupancy Rate              : 33.33%
+ Total Active Tenants        : 1
+ Monthly Expected Revenue    : $2000.00
+ Total Collections Logged    : $800.00
+===================================================
