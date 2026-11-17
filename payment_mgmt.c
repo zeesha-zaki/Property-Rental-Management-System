@@ -1,8 +1,4 @@
-/**
- * @file payment_mgmt.c
- * @brief Record Updates, Element Deletion Shifting, and Rent Collections
- * Implemented by Student 3
- */
+/*Record Updates, Element Deletion Shifting, and Rent Collections*/
 
 #include "rental_system.h"
 

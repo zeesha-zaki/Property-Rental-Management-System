@@ -116,9 +116,9 @@ void searchPropertiesByRooms(const Property properties[], int pCount) {
     for (int i = 0; i < pCount; i++) {
         if (properties[i].rooms >= minRooms) {
             printf("ID: %d | Address: %s | Rent: $%.2f | Rooms: %d | Status: %s\n",
-                   properties[i].propertyID, properties[i].address,
-                   properties[i].monthlyRent, properties[i].rooms,
-                   properties[i].isRented ? "Rented" : "Available");
+            properties[i].propertyID, properties[i].address,
+            properties[i].monthlyRent, properties[i].rooms,
+            properties[i].isRented ? "Rented" : "Available");
             matches++;
         }
     }

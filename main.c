@@ -1,8 +1,4 @@
-/**
- * @file main.c
- * @brief Application Main Driver Menu and Input Sanitization Helpers
- * Implemented by Student 4
- */
+/*Application Main Driver Menu and Input Sanitization Helpers*/
 
 #include "rental_system.h"
 

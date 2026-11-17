@@ -1,8 +1,4 @@
-/**
- * @file auth.c
- * @brief User Authentication and Access Security
- * Implemented by Student 1
- */
+/*User Authentication and Access Security*/
 
 #include "rental_system.h"
 

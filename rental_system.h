@@ -1,9 +1,3 @@
-/**
- * @file rental_system.h
- * @brief Header file for Property Rental Management System
- * Course: CS-115 Computer Programming (Fall Semester 2026)
- */
-
 #ifndef RENTAL_SYSTEM_H
 #define RENTAL_SYSTEM_H
 

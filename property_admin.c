@@ -1,7 +1,4 @@
-/**
- * @file property_admin.c
- * @brief Property Creation, Listing, and Binary File Operations
- */
+/*Property Creation, Listing, and Binary File Operations*/
 
 #include "rental_system.h"
 

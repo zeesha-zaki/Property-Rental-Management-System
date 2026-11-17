@@ -1,8 +1,4 @@
-/**
- * @file tenant_mgmt.c
- * @brief Tenant Registration, Property Assignment, and Substring Search
- * Implemented by Student 2
- */
+/*Tenant Registration, Property Assignment, and Substring Search*/
 
 #include "rental_system.h"
 
