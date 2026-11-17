@@ -1,6 +1,6 @@
 # Property Rental Management System (CS-115 Semester Project)
 
-A modular multi-file application developed in C for the **CS-115 Computer Programming (Fall Semester 2026)** course[cite: 1, 2].
+A modular multi-file application developed in C for the **CS-115 Computer Programming (Fall Semester 2026)**.
 
 ## File Map & Assignments
 - `rental_system.h` & `auth.c` & `property_admin.c`: Saad Tariq
