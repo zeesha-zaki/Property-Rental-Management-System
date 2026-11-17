@@ -1,8 +1,4 @@
-/**
- * @file reports.c
- * @brief Rent Sorting, Budget Filtering, and Summary Reports
- * Implemented by Student 4
- */
+/*Rent Sorting, Budget Filtering, and Summary Reports */
 
 #include "rental_system.h"
 
@@ -70,7 +66,7 @@ void generateSummaryReport(const Property properties[], int pCount, const Tenant
 
     float occupancyRate = (pCount > 0) ? ((float)rentedCount / pCount) * 100.0f : 0.0f;
 
-    // Output to Console
+    // Output on Compiler
     printf("\n===================================================\n");
     printf("     PROPERTY MANAGEMENT SYSTEM SUMMARY REPORT    \n");
     printf("===================================================\n");
@@ -130,59 +126,4 @@ void searchPropertiesByRooms(const Property properties[], int pCount) {
     if (matches == 0) {
         printf("[INFO] No properties found with at least %d room(s).\n", minRooms);
     }
-}
-
-static void writeCSVField(FILE *file, const char *text) {
-    fputc('"', file);
-    for (int i = 0; text[i] != '\0'; i++) {
-        if (text[i] == '"') fputc('"', file);
-        fputc(text[i], file);
-    }
-    fputc('"', file);
-}
-
-void exportToCSV(const Property properties[], int pCount, const Tenant tenants[], int tCount, const Payment payments[], int payCount) {
-    FILE *file = fopen("properties.csv", "w");
-    if (file == NULL) {
-        printf("[ERROR] Unable to create properties.csv!\n");
-        return;
-    }
-    fprintf(file, "PropertyID,Address,MonthlyRent,Rooms,Status\n");
-    for (int i = 0; i < pCount; i++) {
-        fprintf(file, "%d,", properties[i].propertyID);
-        writeCSVField(file, properties[i].address);
-        fprintf(file, ",%.2f,%d,%s\n", properties[i].monthlyRent, properties[i].rooms,
-                properties[i].isRented ? "Rented" : "Available");
-    }
-    fclose(file);
-
-    file = fopen("tenants.csv", "w");
-    if (file == NULL) {
-        printf("[ERROR] Unable to create tenants.csv!\n");
-        return;
-    }
-    fprintf(file, "TenantID,Name,Phone,AssignedPropertyID,LeaseMonths\n");
-    for (int i = 0; i < tCount; i++) {
-        fprintf(file, "%d,", tenants[i].tenantID);
-        writeCSVField(file, tenants[i].name);
-        fprintf(file, ",");
-        writeCSVField(file, tenants[i].phone);
-        fprintf(file, ",%d,%d\n", tenants[i].assignedPropertyID, tenants[i].leaseMonths);
-    }
-    fclose(file);
-
-    file = fopen("payments.csv", "w");
-    if (file == NULL) {
-        printf("[ERROR] Unable to create payments.csv!\n");
-        return;
-    }
-    fprintf(file, "PaymentID,TenantID,AmountPaid,Date,Status\n");
-    for (int i = 0; i < payCount; i++) {
-        fprintf(file, "%d,%d,%.2f,", payments[i].paymentID, payments[i].tenantID, payments[i].amountPaid);
-        writeCSVField(file, payments[i].date);
-        fprintf(file, ",%s\n", payments[i].status);
-    }
-    fclose(file);
-
-    printf("[FILE] Exported properties.csv (%d), tenants.csv (%d) and payments.csv (%d).\n", pCount, tCount, payCount);
 }

@@ -88,9 +88,8 @@ int main(void) {
         printf(" 10. Record Rent Payment\n");
         printf(" 11. View Payment History by Tenant\n");
         printf(" 12. Search Properties by Minimum Rooms\n");
-        printf(" 13. Export Data to CSV Files\n");
-        printf(" 14. Generate Analytics & Summary Report\n");
-        printf(" 15. Save & Exit System\n");
+        printf(" 13. Generate Analytics & Summary Report\n");
+        printf(" 14. Save & Exit System\n");
         printf("===================================================\n");
 
         choice = getIntInput("Enter Choice (1-15): ");
@@ -133,17 +132,15 @@ int main(void) {
                 searchPropertiesByRooms(properties, pCount);
                 break;
             case 13:
-                exportToCSV(properties, pCount, tenants, tCount, payments, payCount);
-                break;
-            case 14:
                 generateSummaryReport(properties, pCount, tenants, tCount, payments, payCount);
                 break;
-            case 15:
+            case 14:
                 savePropertiesToFile(properties, pCount);
                 saveTenantsToFile(tenants, tCount);
                 savePaymentsToFile(payments, payCount);
                 printf("\n[SUCCESS] All data saved. Exiting system. Goodbye!\n");
                 exit(0);
+                break;
             default:
                 printf("\n[INVALID] Selection out of bounds. Enter 1 to 15.\n");
         }
