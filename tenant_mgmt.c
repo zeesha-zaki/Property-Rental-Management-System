@@ -1,4 +1,4 @@
-/*Tenant Registration, Property Assignment, and Substring Search*/
+/*Implemented by Student 2*/
 
 #include "rental_system.h"
 
@@ -51,13 +51,6 @@ void addTenant(Tenant tenants[], int *tCount, Property properties[], int pCount)
         }
     } while (foundIndex == -1);
 
-    do {
-        newTenant.leaseMonths = getIntInput("Enter Lease Duration (Months): ");
-        if (newTenant.leaseMonths <= 0) {
-            printf("[INVALID] Lease duration must be at least 1 month.\n");
-        }
-    } while (newTenant.leaseMonths <= 0);
-
     newTenant.assignedPropertyID = targetPropID;
     properties[foundIndex].isRented = 1;
 
@@ -73,19 +66,18 @@ void displayAllTenants(const Tenant tenants[], int tCount) {
         return;
     }
 
-    printf("\n=================================================================================\n");
-    printf("%-8s | %-25s | %-15s | %-18s | %-12s\n", "ID", "Tenant Name", "Phone", "Assigned Prop ID", "Lease (Months)");
-    printf("=================================================================================\n");
+    printf("\n===================================================================\n");
+    printf("%-8s | %-25s | %-15s | %-18s\n", "ID", "Tenant Name", "Phone", "Assigned Prop ID");
+    printf("===================================================================\n");
 
     for (int i = 0; i < tCount; i++) {
-        printf("%-8d | %-25s | %-15s | %-18d | %-12d\n",
+        printf("%-8d | %-25s | %-15s | %-18d\n",
                tenants[i].tenantID,
                tenants[i].name,
                tenants[i].phone,
-               tenants[i].assignedPropertyID,
-               tenants[i].leaseMonths);
+               tenants[i].assignedPropertyID);
     }
-    printf("=================================================================================\n");
+    printf("===================================================================\n");
 }
 
 void searchTenantByName(const Tenant tenants[], int tCount) {
@@ -108,9 +100,9 @@ void searchTenantByName(const Tenant tenants[], int tCount) {
         for (int k = 0; lowerSearch[k]; k++) lowerSearch[k] = (char)tolower((unsigned char)lowerSearch[k]);
 
         if (strstr(lowerTenant, lowerSearch) != NULL) {
-            printf("ID: %d | Name: %s | Phone: %s | Property ID: %d | Lease: %d months\n",
+            printf("ID: %d | Name: %s | Phone: %s | Property ID: %d\n",
                    tenants[i].tenantID, tenants[i].name, tenants[i].phone,
-                   tenants[i].assignedPropertyID, tenants[i].leaseMonths);
+                   tenants[i].assignedPropertyID);
             found++;
         }
     }

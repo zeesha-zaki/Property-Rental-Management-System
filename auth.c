@@ -1,5 +1,4 @@
 /*User Authentication and Access Security*/
-
 #include "rental_system.h"
 
 int loginSystem(void) {
