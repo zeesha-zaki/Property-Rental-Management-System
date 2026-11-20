@@ -199,7 +199,7 @@ void viewPaymentHistory(const Payment payments[], int payCount, const Tenant ten
     for (int i = 0; i < payCount; i++) {
         if (payments[i].tenantID == targetTenantID) {
             printf("%-9d | %-12s | %-11.2f | %s\n",
-                   payments[i].paymentID, payments[i].date, payments[i].amountPaid, payments[i].status);
+            payments[i].paymentID, payments[i].date, payments[i].amountPaid, payments[i].status);
             total += payments[i].amountPaid;
             found++;
         }

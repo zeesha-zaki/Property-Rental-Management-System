@@ -100,8 +100,8 @@ void searchTenantByName(const Tenant tenants[], int tCount) {
 
         if (strstr(lowerTenant, lowerSearch) != NULL) {
             printf("ID: %d | Name: %s | Phone: %s | Property ID: %d\n",
-                   tenants[i].tenantID, tenants[i].name, tenants[i].phone,
-                   tenants[i].assignedPropertyID);
+            tenants[i].tenantID, tenants[i].name, tenants[i].phone,
+            tenants[i].assignedPropertyID);
             found++;
         }
     }
