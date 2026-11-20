@@ -2,6 +2,18 @@
 
 #include "rental_system.h"
 
+// Reads a DD/MM/YYYY date; returns 1 when the date is a valid calendar date.
+static int parseDate(const char *text, int *day, int *month, int *year) {
+    char extra;
+    if (sscanf(text, "%d/%d/%d%c", day, month, year, &extra) != 3) return 0;
+    if (*year < 2000 || *year > 2100 || *month < 1 || *month > 12 || *day < 1) return 0;
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int leap = (*year % 4 == 0 && *year % 100 != 0) || (*year % 400 == 0);
+    int limit = daysInMonth[*month - 1] + ((*month == 2 && leap) ? 1 : 0);
+    return *day <= limit;
+}
+
+
 void updatePropertyDetails(Property properties[], int pCount) {
     if (pCount == 0) {
         printf("\n[INFO] No property records available to update.\n");
@@ -128,7 +140,13 @@ void processRentPayment(Payment payments[], int *payCount, const Tenant tenants[
             printf("[INVALID] Payment exceeds the monthly rent of $%.2f. Enter an amount up to the rent.\n", rent);
         }
     } while (newPay.amountPaid <= 0 || newPay.amountPaid > rent);
-    getStringInput("Enter Payment Date (DD/MM/YYYY): ", newPay.date, 20);
+    int d, m, y;
+    do {
+        getStringInput("Enter Payment Date (DD/MM/YYYY): ", newPay.date, 20);
+        if (!parseDate(newPay.date, &d, &m, &y)) {
+            printf("[INVALID] Enter a valid date in DD/MM/YYYY format.\n");
+        }
+    } while (!parseDate(newPay.date, &d, &m, &y));
     strcpy(newPay.status, "Paid");
 
     payments[*payCount] = newPay;
@@ -212,4 +230,61 @@ void viewPaymentHistory(const Payment payments[], int payCount, const Tenant ten
         printf("---------------------------------------------------\n");
         printf("Payments: %d | Total paid: $%.2f\n", found, total);
     }
+}
+
+void checkMonthlyRentStatus(const Payment payments[], int payCount, const Tenant tenants[], int tCount,
+                            const Property properties[], int pCount) {
+    if (tCount == 0) {
+        printf("\n[INFO] No tenants registered.\n");
+        return;
+    }
+
+    int month, year;
+    do {
+        month = getIntInput("\nEnter Month (1-12): ");
+        if (month < 1 || month > 12) {
+            printf("[INVALID] Month must be between 1 and 12.\n");
+        }
+    } while (month < 1 || month > 12);
+    do {
+        year = getIntInput("Enter Year (e.g., 2026): ");
+        if (year < 2000 || year > 2100) {
+            printf("[INVALID] Enter a year between 2000 and 2100.\n");
+        }
+    } while (year < 2000 || year > 2100);
+
+    printf("\n--- Monthly Rent Status for %02d/%d ---\n", month, year);
+    printf("%-8s | %-20s | %-10s | %-10s | %s\n", "Tenant", "Name", "Rent Due", "Paid", "Status");
+    printf("----------------------------------------------------------------\n");
+
+    int paidCount = 0, dueCount = 0;
+    for (int i = 0; i < tCount; i++) {
+        float rent = -1;
+        for (int j = 0; j < pCount; j++) {
+            if (properties[j].propertyID == tenants[i].assignedPropertyID) {
+                rent = properties[j].monthlyRent;
+                break;
+            }
+        }
+        if (rent < 0) {
+            printf("%-8d | %-20s | %-10s | %-10s | %s\n", tenants[i].tenantID, tenants[i].name, "-", "-", "No property assigned");
+            continue;
+        }
+
+        float paid = 0;
+        for (int k = 0; k < payCount; k++) {
+            int d, m, y;
+            if (payments[k].tenantID == tenants[i].tenantID && parseDate(payments[k].date, &d, &m, &y) && m == month && y == year) {
+                paid += payments[k].amountPaid;
+            }
+        }
+
+        const char *status;
+        if (paid >= rent - 0.005f) { status = "PAID"; paidCount++; }
+        else { status = "DUE"; dueCount++; }
+
+        printf("%-8d | %-20s | %-10.2f | %-10.2f | %s\n", tenants[i].tenantID, tenants[i].name, rent, paid, status);
+    }
+    printf("----------------------------------------------------------------\n");
+    printf("Paid: %d | Due: %d\n", paidCount, dueCount);
 }

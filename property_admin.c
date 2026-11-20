@@ -1,5 +1,4 @@
 /*Property Creation, Listing, and Binary File Operations*/
-
 #include "rental_system.h"
 
 void addProperty(Property properties[], int *pCount) {

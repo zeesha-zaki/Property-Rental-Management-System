@@ -66,7 +66,7 @@ void generateSummaryReport(const Property properties[], int pCount, const Tenant
 
     float occupancyRate = (pCount > 0) ? ((float)rentedCount / pCount) * 100.0f : 0.0f;
 
-    // Output on Compiler
+    // Output to Console
     printf("\n===================================================\n");
     printf("     PROPERTY MANAGEMENT SYSTEM SUMMARY REPORT    \n");
     printf("===================================================\n");
@@ -95,35 +95,5 @@ void generateSummaryReport(const Property properties[], int pCount, const Tenant
         fprintf(file, "===================================================\n");
         fclose(file);
         printf("[FILE] Executive report saved to summary_report.txt successfully!\n");
-    }
-}
-void searchPropertiesByRooms(const Property properties[], int pCount) {
-    if (pCount == 0) {
-        printf("\n[INFO] No properties available to filter.\n");
-        return;
-    }
-
-    int minRooms;
-    do {
-        minRooms = getIntInput("\nEnter Minimum Number of Rooms: ");
-        if (minRooms <= 0) {
-            printf("[INVALID] Number of rooms must be greater than zero.\n");
-        }
-    } while (minRooms <= 0);
-
-    int matches = 0;
-    printf("\n--- Properties With At Least %d Room(s) ---\n", minRooms);
-    for (int i = 0; i < pCount; i++) {
-        if (properties[i].rooms >= minRooms) {
-            printf("ID: %d | Address: %s | Rent: $%.2f | Rooms: %d | Status: %s\n",
-            properties[i].propertyID, properties[i].address,
-            properties[i].monthlyRent, properties[i].rooms,
-            properties[i].isRented ? "Rented" : "Available");
-            matches++;
-        }
-    }
-
-    if (matches == 0) {
-        printf("[INFO] No properties found with at least %d room(s).\n", minRooms);
     }
 }
