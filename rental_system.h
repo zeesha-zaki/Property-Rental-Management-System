@@ -28,6 +28,7 @@ typedef struct {
     char name[MAX_STR];
     char phone[20];
     int assignedPropertyID; // Links to Property.propertyID
+    int leaseMonths;
 } Tenant;
 
 // Payment/Transaction Structure
@@ -66,8 +67,6 @@ void updatePropertyDetails(Property properties[], int pCount);
 void deletePropertyRecord(Property properties[], int *pCount, Tenant tenants[], int *tCount);
 void processRentPayment(Payment payments[], int *payCount, const Tenant tenants[], int tCount,
                         const Property properties[], int pCount);
-void checkMonthlyRentStatus(const Payment payments[], int payCount, const Tenant tenants[], int tCount,
-                            const Property properties[], int pCount);
 void savePaymentsToFile(const Payment payments[], int payCount);
 void loadPaymentsFromFile(Payment payments[], int *payCount);
 void viewPaymentHistory(const Payment payments[], int payCount, const Tenant tenants[], int tCount);
@@ -75,6 +74,8 @@ void viewPaymentHistory(const Payment payments[], int payCount, const Tenant ten
 // Reports & Sorting Module (Student 4)
 void sortPropertiesByRent(Property properties[], int pCount);
 void searchPropertiesByBudget(const Property properties[], int pCount);
+void searchPropertiesByRooms(const Property properties[], int pCount);
+void exportToCSV(const Property properties[], int pCount, const Tenant tenants[], int tCount, const Payment payments[], int payCount);
 void generateSummaryReport(const Property properties[], int pCount, const Tenant tenants[], int tCount, const Payment payments[], int payCount);
 
 #endif // RENTAL_SYSTEM_H
