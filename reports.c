@@ -1,5 +1,4 @@
 /*Rent Sorting, Budget Filtering, and Summary Reports */
-
 #include "rental_system.h"
 
 void sortPropertiesByRent(Property properties[], int pCount) {

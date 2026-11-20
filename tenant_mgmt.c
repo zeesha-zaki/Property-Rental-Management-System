@@ -1,5 +1,4 @@
 /*Implemented by Student 2*/
-
 #include "rental_system.h"
 
 void addTenant(Tenant tenants[], int *tCount, Property properties[], int pCount) {

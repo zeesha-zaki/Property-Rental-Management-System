@@ -1,5 +1,4 @@
 /*Application Main Driver Menu and Input Sanitization Helpers*/
-
 #include "rental_system.h"
 
 void clearBuffer(void) {
@@ -83,12 +82,11 @@ int main(void) {
         printf(" 9. Delete Property Record\n");
         printf(" 10. Record Rent Payment\n");
         printf(" 11. View Payment History by Tenant\n");
-        printf(" 12. Check Monthly Rent Status\n");
-        printf(" 13. Generate Analytics & Summary Report\n");
-        printf(" 14. Save & Exit System\n");
+        printf(" 12. Generate Analytics & Summary Report\n");
+        printf(" 13. Save & Exit System\n");
         printf("===================================================\n");
 
-        choice = getIntInput("Enter Choice (1-14): ");
+        choice = getIntInput("Enter Choice (1-13): ");
 
         switch (choice) {
             case 1:
@@ -125,19 +123,16 @@ int main(void) {
                 viewPaymentHistory(payments, payCount, tenants, tCount);
                 break;
             case 12:
-                checkMonthlyRentStatus(payments, payCount, tenants, tCount, properties, pCount);
-                break;
-            case 13:
                 generateSummaryReport(properties, pCount, tenants, tCount, payments, payCount);
                 break;
-            case 14:
+            case 13:
                 savePropertiesToFile(properties, pCount);
                 saveTenantsToFile(tenants, tCount);
                 savePaymentsToFile(payments, payCount);
                 printf("\n[SUCCESS] All data saved. Exiting system. Goodbye!\n");
                 exit(0);
             default:
-                printf("\n[INVALID] Selection out of bounds. Enter 1 to 14.\n");
+                printf("\n[INVALID] Selection out of bounds. Enter 1 to 13.\n");
         }
     }
 

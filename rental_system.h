@@ -1,5 +1,4 @@
 /*Header file for Property Rental Management System*/
-
 #ifndef RENTAL_SYSTEM_H
 #define RENTAL_SYSTEM_H
 
@@ -66,8 +65,6 @@ void updatePropertyDetails(Property properties[], int pCount);
 void deletePropertyRecord(Property properties[], int *pCount, Tenant tenants[], int *tCount);
 void processRentPayment(Payment payments[], int *payCount, const Tenant tenants[], int tCount,
                         const Property properties[], int pCount);
-void checkMonthlyRentStatus(const Payment payments[], int payCount, const Tenant tenants[], int tCount,
-                            const Property properties[], int pCount);
 void savePaymentsToFile(const Payment payments[], int payCount);
 void loadPaymentsFromFile(Payment payments[], int *payCount);
 void viewPaymentHistory(const Payment payments[], int payCount, const Tenant tenants[], int tCount);
